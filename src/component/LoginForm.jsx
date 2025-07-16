@@ -2,12 +2,13 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Input from "./ui/Input";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import { useRouter } from "next/router";
 
 const LoginForm = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  console.log("email: ", email, "password: ", password);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const loginData = {
@@ -29,10 +30,12 @@ const LoginForm = () => {
     }
     const loginStatus = await response.json();
     const userData = loginStatus.data;
-    console.log(userData);
+    console.log(userData.role);
     if (userData.role !== "Admin") {
       toast.error("You cannot Access this page.");
+      return;
     }
+    router.push("/dashBoard");
   };
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -60,6 +63,7 @@ const LoginForm = () => {
       >
         Login
       </button>
+      <ToastContainer />
     </form>
   );
 };
