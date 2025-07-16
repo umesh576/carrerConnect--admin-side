@@ -2,11 +2,38 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Input from "./ui/Input";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = () => {};
+  console.log("email: ", email, "password: ", password);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const loginData = {
+      email,
+      password,
+    };
+
+    const response = await fetch("http://localhost:5000/api/user/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginData),
+    });
+
+    if (!response.ok) {
+      toast.error("something went wrong");
+      return;
+    }
+    const loginStatus = await response.json();
+    const userData = loginStatus.data;
+    console.log(userData);
+    if (userData.role !== "Admin") {
+      toast.error("You cannot Access this page.");
+    }
+  };
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <Input
@@ -25,13 +52,13 @@ const LoginForm = () => {
       />
       {/* <Button type="submit">Login</Button> */}
       <Link href="/signup" className="text-blue-600 hover:underline">
-        Don’t have an account? Sign up
+        Don't have an account? Sign up
       </Link>{" "}
       <button
         type="submit"
         className="bg-blue-700 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-lg transition duration-300 cursor-pointer"
       >
-        Login{" "}
+        Login
       </button>
     </form>
   );
