@@ -9,12 +9,13 @@ const Hello = () => {
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem("authToken");
-      console.log(token);
+      console.log("Token: ", token);
       const response = await fetch("http://localhost:5000/api/auth/check", {
         headers: {
           Authorization: `BEARER ${token}`,
         },
       });
+      console.log(response);
       const isLoginData = await response.json();
       if (!response.ok) {
         toast.error("You can't access page");

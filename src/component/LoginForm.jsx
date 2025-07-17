@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Input from "./ui/Input";
 import { toast, ToastContainer } from "react-toastify";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -25,7 +25,7 @@ const LoginForm = () => {
     });
 
     if (!response.ok) {
-      toast.error("something went wrong");
+      toast.error("something went wrong response is not okey");
       return;
     }
     const loginStatus = await response.json();
