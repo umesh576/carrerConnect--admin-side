@@ -30,11 +30,14 @@ const LoginForm = () => {
     }
     const loginStatus = await response.json();
     const userData = loginStatus.data;
-    console.log(userData.role);
+    console.log(loginStatus.token);
+    localStorage.setItem("authToken", loginStatus.token);
+    console.log(localStorage.getItem("authToken"));
     if (userData.role !== "Admin") {
       toast.error("You cannot Access this page.");
       return;
     }
+    toast.success("Login sucessfull.");
     router.push("/dashBoard");
   };
   return (

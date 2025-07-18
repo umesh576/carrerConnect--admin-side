@@ -3,42 +3,63 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-const Hello = () => {
+const Dashboard = () => {
   const router = useRouter();
-  const [isLogin, setislogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Track loading state
+
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem("authToken");
-      console.log("Token: ", token);
-      const response = await fetch("http://localhost:5000/api/auth/check", {
-        headers: {
-          Authorization: `BEARER ${token}`,
-        },
-      });
-      console.log(response);
-      const isLoginData = await response.json();
-      if (!response.ok) {
-        toast.error("You can't access page");
+
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/auth/checkAdmin",
+          {
+            headers: {
+              Authorization: `BEARER ${token}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          toast.error("You can't access this page");
+          router.push("/login");
+          return;
+        }
+
+        setIsLogin(true); // Auth successful
+      } catch (error) {
+        toast.error("An error occurred");
         router.push("/login");
-        return;
+      } finally {
+        setIsLoading(false); // Stop loading
       }
     };
+
     checkAuth();
-  }, []);
+    const fetchCategories = async () => {
+      const response = await fetch("");
+    };
+  }, [router]); // Only depends on `router`
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Show loader while checking auth
+  }
+
   return (
     <div>
-      {isLogin && (
+      {isLogin ? (
         <div>
-          <p>hellos</p>
+          <p>Welcome to the dashboard!</p>
         </div>
-      )}
-      {!isLogin && (
-        <div>
-          <p>k xa khaber</p>
+      ) : (
+        <div className="text-center text-red-500">
+          <p>Access denied. Redirecting...</p>
         </div>
       )}
     </div>
   );
 };
 
-export default Hello;
+export default Dashboard;
