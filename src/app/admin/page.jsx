@@ -1,6 +1,6 @@
-import StatsCard from "@/components/admin/StatsCard";
-import RecentJobs from "@/components/admin/RecentJobs";
-import SystemHealth from "@/components/admin/SystemHealth";
+import StatsCard from "../../component/admin/StatsCard";
+import RecentJobs from "../../component/admin/RecentJobs";
+import SystemHealth from "../../component/admin/SystemHealth";
 
 export default function DashboardPage() {
   return (

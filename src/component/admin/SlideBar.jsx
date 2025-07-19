@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { adminMenuItems } from "@/lib/constants";
+import { adminMenuItems } from "../../libs/constant";
 
 export default function Sidebar() {
   return (

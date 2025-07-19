@@ -1,4 +1,5 @@
 "use client";
+import JobCategoryCard from "../../component/jobCategory/JobCategory.jsx";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -7,11 +8,11 @@ const Dashboard = () => {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // Track loading state
+  const [jobCategoryData, setjobCategoryData] = useState[[]];
 
   useEffect(() => {
+    const token = localStorage.getItem("authToken");
     const checkAuth = async () => {
-      const token = localStorage.getItem("authToken");
-
       try {
         const response = await fetch(
           "http://localhost:5000/api/auth/checkAdmin",
@@ -39,8 +40,20 @@ const Dashboard = () => {
 
     checkAuth();
     const fetchCategories = async () => {
-      const response = await fetch("");
+      const response = await fetch(
+        "http://localhost:5000/api/jobcategory/getJobCategory",
+        {
+          headers: {
+            Authorization: `BEARER ${token}`,
+          },
+        }
+      );
+      const jobCatData = await response.json();
+      // const jobCategory = jobCatData.data;
+      setjobCategoryData(jobCatData.data);
     };
+    fetchCategories();
+    console.log(jobCategoryData);
   }, [router]); // Only depends on `router`
 
   if (isLoading) {
@@ -52,6 +65,9 @@ const Dashboard = () => {
       {isLogin ? (
         <div>
           <p>Welcome to the dashboard!</p>
+          {/* {jobCategoryData.map((index, value) => {
+            <JobCategoryCard key={index} catData={value} />;
+          })} */}
         </div>
       ) : (
         <div className="text-center text-red-500">
