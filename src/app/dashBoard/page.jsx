@@ -8,13 +8,18 @@ const Dashboard = () => {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // Track loading state
-  const [jobCategoryData, setjobCategoryData] = useState[[]];
+  const [jobCategoryData, setjobCategoryData] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
+    if (!token) {
+      toast.error("plase login first");
+      router.push("/login");
+    }
+
     const checkAuth = async () => {
       try {
-        const response = await fetch(
+        const authresponse = await fetch(
           "http://localhost:5000/api/auth/checkAdmin",
           {
             headers: {
@@ -23,13 +28,31 @@ const Dashboard = () => {
           }
         );
 
-        if (!response.ok) {
+        if (!authresponse.ok) {
           toast.error("You can't access this page");
           router.push("/login");
           return;
         }
 
         setIsLogin(true); // Auth successful
+        // await fetchCategories();
+        const response = await fetch(
+          "http://localhost:5000/api/jobcategory/getJobCategory",
+          { headers: { Authorization: `BEARER ${token}` } }
+        );
+        const jobCatData = await response.json();
+        console.log("API Response:", jobCatData);
+        console.log("Data to set:", jobCatData?.data);
+
+        // Ensure we're setting a proper array
+        const dataToSet = Array.isArray(jobCatData?.data)
+          ? jobCatData.data
+          : [];
+
+        setjobCategoryData(dataToSet);
+
+        // This will still show old state - that's expected!
+        console.log("Current state (will be old):", jobCategoryData);
       } catch (error) {
         toast.error("An error occurred");
         router.push("/login");
@@ -39,22 +62,7 @@ const Dashboard = () => {
     };
 
     checkAuth();
-    const fetchCategories = async () => {
-      const response = await fetch(
-        "http://localhost:5000/api/jobcategory/getJobCategory",
-        {
-          headers: {
-            Authorization: `BEARER ${token}`,
-          },
-        }
-      );
-      const jobCatData = await response.json();
-      // const jobCategory = jobCatData.data;
-      setjobCategoryData(jobCatData.data);
-    };
-    fetchCategories();
-    console.log(jobCategoryData);
-  }, [router]); // Only depends on `router`
+  }, [jobCategoryDat]); // Only depends on `router`
 
   if (isLoading) {
     return <div>Loading...</div>; // Show loader while checking auth
@@ -65,9 +73,9 @@ const Dashboard = () => {
       {isLogin ? (
         <div>
           <p>Welcome to the dashboard!</p>
-          {/* {jobCategoryData.map((index, value) => {
+          {jobCategoryData.map((value, index) => {
             <JobCategoryCard key={index} catData={value} />;
-          })} */}
+          })}
         </div>
       ) : (
         <div className="text-center text-red-500">
