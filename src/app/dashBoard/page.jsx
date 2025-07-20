@@ -57,6 +57,7 @@ const Dashboard = () => {
         toast.error("An error occurred");
         router.push("/login");
       } finally {
+        //this is setLoading
         setIsLoading(false); // Stop loading
       }
     };
