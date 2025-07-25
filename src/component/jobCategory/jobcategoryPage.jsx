@@ -19,13 +19,10 @@ const JobCategoryPage = () => {
 
       const jobCatData = await response.json();
       const JobCategory = await jobCatData.data;
-      console.log(JobCategory);
       setjobCategoryData(JobCategory);
     };
     fetchJobCategroy();
   }, []);
-
-  console.log("last one", jobCategoryData);
 
   return (
     <div className=" bg-gray-50 py-8 px-4 sm:px-6 lg:px-12">
