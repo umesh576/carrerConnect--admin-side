@@ -32,10 +32,10 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <Link
-            href="/services"
-            className="text-blue-800 font-medium hover:text-blue-600 border-b-2 border-blue-500"
+            href="/dashBoard"
+            className="text-blue-800 font-medium hover:text-blue-600"
           >
-            Services
+            Dashboard
           </Link>
           <Link
             href="/about"
@@ -57,22 +57,6 @@ export default function Header() {
           </Link>
 
           {/* Desktop Auth Buttons */}
-          <div className="flex items-center space-x-4 ml-4">
-            <Link
-              href="/login"
-              className="flex items-center bg-blue-50 hover:bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-medium transition duration-300"
-            >
-              <FaUser className="mr-2" />
-              Login
-            </Link>
-            <Link
-              href="/signup"
-              className="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition duration-300"
-            >
-              <FaUserPlus className="mr-2" />
-              Sign Up
-            </Link>
-          </div>
         </nav>
       </div>
 
@@ -80,20 +64,6 @@ export default function Header() {
       {isOpen && (
         <div className="md:hidden bg-white border-t">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            <Link
-              href="/"
-              className="text-blue-800 font-medium hover:text-blue-600 py-2"
-              onClick={() => setIsOpen(false)}
-            >
-              Home
-            </Link>
-            <Link
-              href="/services"
-              className="text-blue-800 font-medium hover:text-blue-600 py-2 border-b-2 border-blue-500 w-max"
-              onClick={() => setIsOpen(false)}
-            >
-              Services
-            </Link>
             <Link
               href="/about"
               className="text-blue-800 font-medium hover:text-blue-600 py-2"

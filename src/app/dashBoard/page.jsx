@@ -1,4 +1,5 @@
 "use client";
+import HeroPage from "../../component/heropage/page";
 import JobCategoryCard from "../../component/jobCategory/JobCategory.jsx";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -71,13 +72,15 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
+    <div className="h-screen">
       {isLogin ? (
         <div>
           <p>Welcome to the dashboard!</p>
           {jobCategoryData ? (
             <div>
-              <p>hello hyyy</p>
+              {/* <p>hello hyyy</p>
+               */}
+              <HeroPage />
             </div>
           ) : (
             <div>
