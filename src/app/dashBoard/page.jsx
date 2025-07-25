@@ -53,16 +53,6 @@ const Dashboard = () => {
 
         setjobCategoryData(JobCategory);
 
-        // console.log("API Response:", jobCatData);
-        // console.log("Data to set:", jobCatData?.data);
-
-        // // Ensure we're setting a proper array
-        // const dataToSet = Array.isArray(jobCatData?.data)
-        //   ? jobCatData.data
-        //   : [];
-
-        // setjobCategoryData(dataToSet);
-
         // // This will still show old state - that's expected!
         setIsLogin(true);
       } catch (error) {
