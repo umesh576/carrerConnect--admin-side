@@ -1,8 +1,10 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 
 const JobCategoryCard = ({ data }) => {
+  const router = useRouter();
   const token = localStorage.getItem("authToken");
 
   const onDeletePost = async (dataId) => {
@@ -29,6 +31,9 @@ const JobCategoryCard = ({ data }) => {
       toast.error("Something went wrong.");
     }
   };
+  const onViewPosts = async (dataId) => {
+    router.push(`/seepost/${dataId}`);
+  };
   return (
     <div className="bg-white shadow-md rounded-lg p-6 mb-4 w-full max-w-xl mx-auto hover:shadow-lg transition-shadow duration-300">
       <h2 className="text-2xl font-bold text-gray-800 mb-2">{data.jobTitle}</h2>
@@ -42,7 +47,7 @@ const JobCategoryCard = ({ data }) => {
           ➕ Add Post
         </button>
         <button
-          // onClick={() => onViewPosts(data)}
+          onClick={() => onViewPosts(data._id)}
           className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md text-sm font-medium transition"
         >
           🔍 See Posts
