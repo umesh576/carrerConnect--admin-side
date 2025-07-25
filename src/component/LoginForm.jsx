@@ -33,12 +33,13 @@ const LoginForm = () => {
     console.log(loginStatus.token);
     localStorage.setItem("authToken", loginStatus.token);
     console.log(localStorage.getItem("authToken"));
-    if (userData.role !== "Admin") {
+    if (userData.role === "Admin") {
+      toast.success("Login sucessfull.");
+      router.push("/dashBoard");
+    } else {
       toast.error("You cannot Access this page.");
       return;
     }
-    toast.success("Login sucessfull.");
-    router.push("/dashBoard");
   };
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">

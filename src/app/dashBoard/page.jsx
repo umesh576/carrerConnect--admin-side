@@ -3,6 +3,7 @@ import JobCategoryCard from "../../component/jobCategory/JobCategory.jsx";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+// import JobCategoryCard from "./../../component/jobCategory/JobCategory";
 
 const Dashboard = () => {
   const router = useRouter();
@@ -29,30 +30,41 @@ const Dashboard = () => {
         );
 
         if (!authresponse.ok) {
-          toast.error("You can't access this page");
+          toast.error("You can't access this page please login first.");
           router.push("/login");
           return;
         }
 
-        setIsLogin(true); // Auth successful
         // await fetchCategories();
+
         const response = await fetch(
           "http://localhost:5000/api/jobcategory/getJobCategory",
           { headers: { Authorization: `BEARER ${token}` } }
         );
+
+        if (response.ok) {
+          console.log("hello");
+        } else {
+          console.log("hyyy");
+        }
         const jobCatData = await response.json();
-        console.log("API Response:", jobCatData);
-        console.log("Data to set:", jobCatData?.data);
 
-        // Ensure we're setting a proper array
-        const dataToSet = Array.isArray(jobCatData?.data)
-          ? jobCatData.data
-          : [];
+        const JobCategory = await jobCatData.data;
 
-        setjobCategoryData(dataToSet);
+        setjobCategoryData(JobCategory);
 
-        // This will still show old state - that's expected!
-        console.log("Current state (will be old):", jobCategoryData);
+        // console.log("API Response:", jobCatData);
+        // console.log("Data to set:", jobCatData?.data);
+
+        // // Ensure we're setting a proper array
+        // const dataToSet = Array.isArray(jobCatData?.data)
+        //   ? jobCatData.data
+        //   : [];
+
+        // setjobCategoryData(dataToSet);
+
+        // // This will still show old state - that's expected!
+        setIsLogin(true);
       } catch (error) {
         toast.error("An error occurred");
         router.push("/login");
@@ -61,9 +73,8 @@ const Dashboard = () => {
         setIsLoading(false); // Stop loading
       }
     };
-
     checkAuth();
-  }, [jobCategoryDat]); // Only depends on `router`
+  }, []); // Only depends on `router`
 
   if (isLoading) {
     return <div>Loading...</div>; // Show loader while checking auth
@@ -74,9 +85,18 @@ const Dashboard = () => {
       {isLogin ? (
         <div>
           <p>Welcome to the dashboard!</p>
-          {jobCategoryData.map((value, index) => {
+          {jobCategoryData ? (
+            <div>
+              <p>hello hyyy</p>
+            </div>
+          ) : (
+            <div>
+              <p>hello hyyy but byyy</p>
+            </div>
+          )}
+          {/* {jobCategoryData.map((value, index) => {
             <JobCategoryCard key={index} catData={value} />;
-          })}
+          })} */}
         </div>
       ) : (
         <div className="text-center text-red-500">
