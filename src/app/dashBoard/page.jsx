@@ -1,16 +1,15 @@
 "use client";
-import HeroPage from "../../component/heropage/page";
-import JobCategoryCard from "../../component/jobCategory/JobCategory.jsx";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 // import JobCategoryCard from "./../../component/jobCategory/JobCategory";
+import HeroPage from "./../../component/heropage/page";
+import JobCategoryPage from "../../component/jobCategory/jobcategoryPage";
 
 const Dashboard = () => {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // Track loading state
-  const [jobCategoryData, setjobCategoryData] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -38,22 +37,6 @@ const Dashboard = () => {
 
         // await fetchCategories();
 
-        const response = await fetch(
-          "http://localhost:5000/api/jobcategory/getJobCategory",
-          { headers: { Authorization: `BEARER ${token}` } }
-        );
-
-        if (response.ok) {
-          console.log("hello");
-        } else {
-          console.log("hyyy");
-        }
-        const jobCatData = await response.json();
-
-        const JobCategory = await jobCatData.data;
-
-        setjobCategoryData(JobCategory);
-
         // // This will still show old state - that's expected!
         setIsLogin(true);
       } catch (error) {
@@ -72,24 +55,21 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="h-screen">
+    <div className="">
       {isLogin ? (
         <div>
-          <p>Welcome to the dashboard!</p>
-          {jobCategoryData ? (
-            <div>
-              {/* <p>hello hyyy</p>
-               */}
-              <HeroPage />
+          <HeroPage />
+
+          <div className="bg-white">
+            <div className="w-full flex justify-center py-1">
+              <h1 className="text-4xl font-extrabold text-black">
+                Job categories
+              </h1>
             </div>
-          ) : (
             <div>
-              <p>hello hyyy but byyy</p>
+              <JobCategoryPage />
             </div>
-          )}
-          {/* {jobCategoryData.map((value, index) => {
-            <JobCategoryCard key={index} catData={value} />;
-          })} */}
+          </div>
         </div>
       ) : (
         <div className="text-center text-red-500">

@@ -1,109 +1,44 @@
+"use client";
 import React from "react";
-import {
-  Box,
-  Typography,
-  Button,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
-import { styled } from "@mui/system";
-
-const HeroContainer = styled(Box)(({ theme }) => ({
-  minHeight: "50vh",
-  display: "flex",
-  alignItems: "center",
-  backgroundColor: theme.palette.primary.main,
-  color: theme.palette.primary.contrastText,
-  padding: theme.spacing(4),
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[4],
-  marginBottom: theme.spacing(4),
-  backgroundImage:
-    "linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(255,255,255,0.1) 100%)",
-}));
-
-const HeroContent = styled(Box)(({ theme }) => ({
-  maxWidth: "800px",
-  margin: "0 auto",
-  textAlign: "center",
-}));
-
-const StatsContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "space-around",
-  flexWrap: "wrap",
-  marginTop: theme.spacing(4),
-}));
-
-const StatItem = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(2),
-  textAlign: "center",
-}));
 
 const HeroPage = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
   return (
-    <HeroContainer>
-      <HeroContent>
-        <Typography
-          variant={isMobile ? "h4" : "h3"}
-          component="h1"
-          gutterBottom
-          sx={{ fontWeight: 700 }}
-        >
+    <div className="min-h-[50vh] flex items-center justify-center bg-blue-600 text-white px-8  shadow-lg  bg-gradient-to-br from-black/10 to-white/10">
+      <div className="max-w-4xl mx-auto text-center">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4">
           Welcome to Your Admin Dashboard
-        </Typography>
+        </h1>
 
-        <Typography
-          variant={isMobile ? "body1" : "h6"}
-          component="p"
-          sx={{ mb: 3, opacity: 0.9 }}
-        >
+        <p className="text-base md:text-lg mb-6 opacity-90">
           Manage job postings, applicants, and company profiles with ease. Get
           insights with our comprehensive analytics.
-        </Typography>
+        </p>
 
-        <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
-          <Button
-            variant="contained"
-            color="secondary"
-            size={isMobile ? "medium" : "large"}
-          >
+        <div className="flex justify-center gap-4 mb-6 flex-wrap">
+          <button className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded text-base md:text-lg font-semibold">
             View Analytics
-          </Button>
-          <Button
-            variant="outlined"
-            color="inherit"
-            size={isMobile ? "medium" : "large"}
-          >
+          </button>
+          <button className="border border-white hover:bg-white hover:text-blue-600 text-white px-6 py-2 rounded text-base md:text-lg font-semibold">
             Manage Jobs
-          </Button>
-        </Box>
+          </button>
+        </div>
 
-        <StatsContainer>
-          <StatItem>
-            <Typography variant="h5" sx={{ fontWeight: 700 }}>
-              1,240
-            </Typography>
-            <Typography variant="body2">Active Jobs</Typography>
-          </StatItem>
-          <StatItem>
-            <Typography variant="h5" sx={{ fontWeight: 700 }}>
-              5,689
-            </Typography>
-            <Typography variant="body2">Total Applicants</Typography>
-          </StatItem>
-          <StatItem>
-            <Typography variant="h5" sx={{ fontWeight: 700 }}>
-              87
-            </Typography>
-            <Typography variant="body2">Companies</Typography>
-          </StatItem>
-        </StatsContainer>
-      </HeroContent>
-    </HeroContainer>
+        <div className="flex justify-around flex-wrap gap-4 mt-6">
+          <div className="text-center px-4">
+            <h2 className="text-2xl font-bold">1,240</h2>
+            <p className="text-sm">Active Jobs</p>
+          </div>
+          <div className="text-center px-4">
+            <h2 className="text-2xl font-bold">5,689</h2>
+            <p className="text-sm">Total Applicants</p>
+          </div>
+          <div className="text-center px-4">
+            <h2 className="text-2xl font-bold">87</h2>
+            <p className="text-sm">Companies</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
