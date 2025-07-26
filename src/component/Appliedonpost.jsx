@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
-const Appliedonpost = ({ appliedOnpostId }) => {
+const Appliedonpost = ({ appliedOnpostId, userId }) => {
   const [appliedOnpostdata, setappliedOnpostdata] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -19,10 +20,9 @@ const Appliedonpost = ({ appliedOnpostId }) => {
 
         const apliedonpost = await response.json();
         const appliedOnbpostData = await apliedonpost.data;
-        console.log(appliedOnbpostData);
 
-        if (response.ok) {
-          console.log("appliedOnpost fetch sucessfully");
+        if (!response.ok) {
+          toast.error("something went wrong in fetch appliedOnpost.");
         }
         setappliedOnpostdata(appliedOnbpostData);
       } catch (e) {
@@ -33,6 +33,10 @@ const Appliedonpost = ({ appliedOnpostId }) => {
     };
     fetchAppliedOnPost(appliedOnpostId);
   }, [appliedOnpostId]);
+
+  const hadleDelete = () => {};
+  const viewProfile = () => {};
+  const acceptRequest = () => {};
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-md border border-gray-200">
@@ -107,7 +111,14 @@ const Appliedonpost = ({ appliedOnpostId }) => {
         <button className="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-gray-700 transition-colors shadow-sm hover:shadow-md">
           Reject
         </button>
+        <button
+          className="px-6 py-3 bg-blue-400 text-white rounded-lg hover:bg-gray-700 transition-colors shadow-sm hover:shadow-md"
+          onClick={hadleDelete}
+        >
+          View profile
+        </button>
       </div>
+      <ToastContainer />
     </div>
   );
 };
