@@ -102,6 +102,9 @@ const PostReviewPage = () => {
               </div>
             </div>
             <div>
+              <div>
+                <h1>User details who applied in the post</h1>
+              </div>
               {appliedUser ? (
                 <div>
                   {appliedUser.map((items, index) => {
