@@ -48,17 +48,46 @@ const DynamicJobCategoryPage = () => {
 
     fetchCategory();
   }, [id]);
+  const handelGoback = async () => {
+    setTimeout(() => {
+      router.push("/dashBoard");
+    }, 1000);
+  };
 
   const createNewPost = () => {
     console.log("post is creating");
     // You might want to add navigation to create post page here
-    // router.push(`/create-post?categoryId=${id}`);
+    router.push(`/createPost?categoryId=${id}`);
   };
 
-  const handleDeleteCategory = () => {
-    // Add your delete logic here
-    console.log("Deleting category");
-    toast.warning("Delete functionality not implemented yet");
+  const handleDeleteCategory = async () => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      router.push("/");
+      toast.error("plaease login first");
+      return;
+    }
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/jobcategory/delJobCategory/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `BEARER ${token}`,
+          },
+        }
+      );
+
+      if (response.ok) {
+        toast.success("Jobcategory sucessfully deleted.");
+        router.push("/dashBoard");
+      } else {
+        toast.error("Something went wrong for delete Category.");
+        console.error("Delete failed.");
+      }
+    } catch (e) {
+      toast.error("Something went wrong.");
+    }
   };
 
   if (isLoading) {
@@ -202,6 +231,14 @@ const DynamicJobCategoryPage = () => {
             </p>
           </div>
         )}
+        <div className="p-4">
+          <button
+            className=" border-1 py-3 px-8 rounded-lg bg-blue-500 text-white  hover:bg-orange-300 cursor-pointer"
+            onClick={handelGoback}
+          >
+            Back
+          </button>
+        </div>
       </div>
 
       <ToastContainer

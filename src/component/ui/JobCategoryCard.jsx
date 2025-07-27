@@ -9,7 +9,6 @@ const JobCategoryCard = ({ data }) => {
 
   const onDeletePost = async (dataId) => {
     try {
-      console.log(dataId);
       const response = await fetch(
         `http://localhost:5000/api/jobcategory/delJobCategory/${dataId}`,
         {
@@ -22,6 +21,9 @@ const JobCategoryCard = ({ data }) => {
       );
 
       if (response.ok) {
+        setTimeout(() => {
+          router.push("/dashBoard");
+        }, 1000);
         toast.success("Jobcategory sucessfully deleted.");
       } else {
         toast.error("Something went wrong for delete Category.");
