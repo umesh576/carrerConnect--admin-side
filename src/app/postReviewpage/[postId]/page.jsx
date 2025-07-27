@@ -1,10 +1,13 @@
 "use client";
 import UserDetailsCard from "../../../component/UserDetailsCard";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
 const PostReviewPage = () => {
+  const router = useRouter();
+  const [loadingonback, setLoadingonback] = useState(true);
   const { postId } = useParams();
   const [postdata, setPostData] = useState([]);
   const [isloading, setLoading] = useState(false);
@@ -31,7 +34,12 @@ const PostReviewPage = () => {
     };
     fetchPostDetails();
   }, []);
-
+  const handleGoback = () => {
+    setLoadingonback(false);
+    setTimeout(() => {
+      router.push(`/dashBoard`);
+    }, 500);
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -156,6 +164,21 @@ const PostReviewPage = () => {
                         This position hasn't received any applications yet.
                         Check back later or share this job post.
                       </p>
+
+                      <div className="w-full flex justify-center p-4">
+                        <div>
+                          <button
+                            onClick={handleGoback}
+                            className="border-1 text-white bg-gray-700 px-4 py-2 "
+                          >
+                            {loadingonback ? (
+                              <p>← Back</p>
+                            ) : (
+                              <p>← Backing...</p>
+                            )}
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -187,6 +210,7 @@ const PostReviewPage = () => {
           </div>
         )}
       </div>
+
       <ToastContainer position="bottom-right" autoClose={5000} />
     </div>
   );

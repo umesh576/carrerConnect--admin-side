@@ -14,6 +14,7 @@ const DynamicJobCategoryPage = () => {
   const [isPost, setIspost] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -49,6 +50,7 @@ const DynamicJobCategoryPage = () => {
     fetchCategory();
   }, [id]);
   const handelGoback = async () => {
+    setLoading(true);
     setTimeout(() => {
       router.push("/dashBoard");
     }, 1000);
@@ -236,7 +238,7 @@ const DynamicJobCategoryPage = () => {
             className=" border-1 py-3 px-8 rounded-lg bg-blue-500 text-white  hover:bg-orange-300 cursor-pointer"
             onClick={handelGoback}
           >
-            Back
+            {!loading ? <div>Back</div> : <div>Backing...</div>}
           </button>
         </div>
       </div>

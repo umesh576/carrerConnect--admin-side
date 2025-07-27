@@ -57,10 +57,7 @@ const LoginForm = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      {/* <Button type="submit">Login</Button> */}
-      <Link href="/signup" className="text-blue-600 hover:underline">
-        Don't have an account? Sign up
-      </Link>{" "}
+
       <button
         type="submit"
         className="bg-blue-700 hover:bg-blue-500 text-white font-bold py-3 px-4 rounded-lg transition duration-300 cursor-pointer"
