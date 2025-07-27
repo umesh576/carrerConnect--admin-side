@@ -53,6 +53,9 @@ const Dashboard = () => {
   if (isLoading) {
     return <div>Loading...</div>; // Show loader while checking auth
   }
+  const handelCreateCategories = () => {
+    router.push("/CreateCategories");
+  };
 
   return (
     <div className="">
@@ -66,8 +69,17 @@ const Dashboard = () => {
                 Job categories
               </h1>
             </div>
+
             <div>
               <JobCategoryPage />
+            </div>
+            <div className="w-full flex p-3 justify-center">
+              <button
+                className="text-white p-3 bg-blue-500 rounded-lg mr-0 cursor-pointer hover:bg-blue-400"
+                onClick={handelCreateCategories}
+              >
+                Create categories
+              </button>
             </div>
           </div>
         </div>
