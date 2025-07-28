@@ -36,6 +36,7 @@ const CreatePostPage = () => {
         },
         body: formData,
       });
+      console.log(await response.json());
       if (response.ok) {
         toast.success("Post was sucessfully created.");
         router.push(`/seepost/${categoryId}`);
@@ -80,7 +81,7 @@ const CreatePostPage = () => {
                 placeholder="Enter title.."
                 name="title"
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                className="w-full px-4 text-black py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
               />
             </div>
 
@@ -97,7 +98,7 @@ const CreatePostPage = () => {
                 placeholder="Enter companyName.."
                 name="companyName"
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                className="w-full text-black px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
               />
             </div>
 
@@ -114,7 +115,7 @@ const CreatePostPage = () => {
                 name="description"
                 required
                 rows={3}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                className="w-full text-black px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
               />
             </div>
 
@@ -131,7 +132,7 @@ const CreatePostPage = () => {
                 placeholder="Enter qualification.."
                 name="qualification"
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                className="w-full text-black px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
               />
             </div>
 
@@ -148,7 +149,7 @@ const CreatePostPage = () => {
                 placeholder="Enter salary.."
                 name="salary"
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                className="w-full px-4 text-black py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
               />
             </div>
 
@@ -165,7 +166,7 @@ const CreatePostPage = () => {
                 placeholder="Enter experience.."
                 name="experience"
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                className="w-full text-black px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
               />
             </div>
 
@@ -197,13 +198,7 @@ const CreatePostPage = () => {
                       Click to upload or drag and drop
                     </p>
                   </div>
-                  <input
-                    type="file"
-                    name="picturePost"
-                    required
-                    className="hidden"
-                    accept="image/*"
-                  />
+                  <input type="file" name="picturePost" required />
                 </label>
               </div>
             </div>

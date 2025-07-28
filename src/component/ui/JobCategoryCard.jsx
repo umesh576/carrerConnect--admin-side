@@ -33,6 +33,9 @@ const JobCategoryCard = ({ data }) => {
       toast.error("Something went wrong.");
     }
   };
+  const onAddPost = (dataId) => {
+    router.push(`/createPost?categoryId=${dataId}`);
+  };
   const onViewPosts = async (dataId) => {
     router.push(`/seepost/${dataId}`);
   };
@@ -43,7 +46,7 @@ const JobCategoryCard = ({ data }) => {
 
       <div className="flex flex-wrap gap-3">
         <button
-          // onClick={() => onAddPost(data)}
+          onClick={() => onAddPost(data._id)}
           className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition"
         >
           ➕ Add Post

@@ -2,9 +2,11 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
+
 const CeateCategories = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [loadingonback, setLoadingonback] = useState(true);
 
   const handelSubmit = async (e) => {
     e.preventDefault();
@@ -47,6 +49,12 @@ const CeateCategories = () => {
   if (loading) {
     return <div>loading....</div>;
   }
+  const handleGoBack = () => {
+    setLoadingonback(false);
+    setTimeout(() => {
+      router.push("/dashBoard");
+    }, 500);
+  };
   return (
     <div className="w-full bg-blue-300 h-screen flex items-center">
       <div className="w-full">
@@ -106,6 +114,14 @@ const CeateCategories = () => {
               </button>
             </div>
           </form>
+          <div>
+            <button
+              onClick={handleGoBack}
+              className="px-6 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition"
+            >
+              {loadingonback ? <p> ← Back</p> : <p>← Backing..</p>}
+            </button>
+          </div>
         </div>
       </div>
       <ToastContainer />
