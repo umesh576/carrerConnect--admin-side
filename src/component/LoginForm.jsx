@@ -64,7 +64,7 @@ const LoginForm = () => {
       >
         Login
       </button>
-      <ToastContainer />
+      <ToastContainer key={1} />
     </form>
   );
 };

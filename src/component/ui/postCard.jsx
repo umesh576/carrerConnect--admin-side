@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import Image from "next/image";
+// import Image from "next/image";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 
@@ -142,6 +142,7 @@ const PostCard = ({ postId }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        key={1}
       />
     </div>
   );

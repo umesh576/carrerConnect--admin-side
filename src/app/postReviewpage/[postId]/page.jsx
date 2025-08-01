@@ -130,7 +130,7 @@ const PostReviewPage = () => {
                     <div>
                       {appliedUser.map((items, index) => (
                         // <div className="relative group overflow-hidden  rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-blue-200">
-                        <div>
+                        <div key={index}>
                           <UserDetailsCard
                             userId={items}
                             key={index}
@@ -210,7 +210,7 @@ const PostReviewPage = () => {
         )}
       </div>
 
-      <ToastContainer position="bottom-right" autoClose={5000} />
+      <ToastContainer position="bottom-right" autoClose={5000} key={1} />
     </div>
   );
 };

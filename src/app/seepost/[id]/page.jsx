@@ -155,7 +155,7 @@ const DynamicJobCategoryPage = () => {
               {isPost ? (
                 allPost.length > 0 ? (
                   <div className="space-y-6">
-                    <PostPage allPostId={allPost} />
+                    <PostPage allPostId={allPost} key={1} />
                   </div>
                 ) : (
                   <div className="text-center py-12">
