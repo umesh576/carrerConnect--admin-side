@@ -52,7 +52,7 @@ const PostReviewPage = () => {
                   {postdata.title}
                 </h1>
 
-                <div className="flex items-center text-gray-600 mb-4">
+                <div className="flex items-center text-black mb-4">
                   <svg
                     className="w-5 h-5 mr-1"
                     fill="currentColor"

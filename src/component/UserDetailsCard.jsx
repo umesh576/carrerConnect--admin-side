@@ -29,10 +29,14 @@ const UserDetailsCard = ({ userId }) => {
     // <div className="space-y-6 py-4">
     <div>
       <div></div>
-      <div>
-        <h1>User applied wuth this details</h1>
+      <div className="text-black">
+        <h1>Real data of applied user</h1>
         <div>
           <p>Name: {userData.firstName + userData.lastName}</p>
+          <p>Email: {userData.email}</p>
+          <p>Gender: {userData.gender}</p>
+          <p>Role: {userData.role}</p>
+          <p>Skill: {userData.skill}</p>
         </div>
         {userData ? (
           <div>

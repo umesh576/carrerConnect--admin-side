@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -5,6 +6,7 @@ const Appliedonpost = ({ appliedOnpostId, userId }) => {
   const [appliedOnpostdata, setappliedOnpostdata] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const router = useRouter();
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     const fetchAppliedOnPost = async (id) => {
@@ -41,6 +43,13 @@ const Appliedonpost = ({ appliedOnpostId, userId }) => {
   const viewResume = () => {};
   const handleclick = () => {};
   const userApplicationAccepted = () => {};
+  const viewCoverLetter = () => {
+    const filePath = appliedOnpostdata.coverLetter[0].replace(/\\/g, "/"); // 🔁 Replace backslash
+    const encodedPath = encodeURIComponent(filePath);
+    router.push(
+      `/reviewCoverLetter?appliedOnpostId=${appliedOnpostdata.postId}&coverLetter=${encodedPath}`
+    );
+  };
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-md border border-gray-200">
@@ -52,7 +61,7 @@ const Appliedonpost = ({ appliedOnpostId, userId }) => {
         {/* Name and Contact */}
         <div className="space-y-4">
           <div className="bg-gray-50 p-4 rounded-lg">
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+            <p className="text-xs font-semibold text-black uppercase tracking-wider">
               Name
             </p>
             <p className="text-lg font-medium text-gray-900">
