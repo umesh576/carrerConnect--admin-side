@@ -139,6 +139,20 @@ const PostReviewPage = () => {
                         </div>
                         // </div>
                       ))}
+                      <div className="w-full flex justify-center p-4">
+                        <div>
+                          <button
+                            onClick={handleGoback}
+                            className="border-1 text-white bg-gray-700 px-4 py-2 "
+                          >
+                            {loadingonback ? (
+                              <p>← Back</p>
+                            ) : (
+                              <p>← Backing...</p>
+                            )}
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   ) : (
                     <div className="text-center py-16">
@@ -163,22 +177,7 @@ const PostReviewPage = () => {
                       <p className="text-gray-500 max-w-md mx-auto">
                         This position hasn't received any applications yet.
                         Check back later or share this job post.
-                      </p>
-
-                      <div className="w-full flex justify-center p-4">
-                        <div>
-                          <button
-                            onClick={handleGoback}
-                            className="border-1 text-white bg-gray-700 px-4 py-2 "
-                          >
-                            {loadingonback ? (
-                              <p>← Back</p>
-                            ) : (
-                              <p>← Backing...</p>
-                            )}
-                          </button>
-                        </div>
-                      </div>
+                      </p>{" "}
                     </div>
                   )}
                 </div>

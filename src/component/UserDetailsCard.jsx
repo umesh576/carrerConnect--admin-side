@@ -11,6 +11,7 @@ const UserDetailsCard = ({ userId }) => {
         const response = await fetch(`http://localhost:5000/api/user/${id}`);
         const userFullData = await response.json();
         const userData = await userFullData.data;
+        console.log(userData);
         if (!response.ok) {
           toast.error("getting some error in the fetch user");
         }
@@ -27,27 +28,34 @@ const UserDetailsCard = ({ userId }) => {
   return (
     // <div className="space-y-6 py-4">
     <div>
-      {userData ? (
+      <div></div>
+      <div>
+        <h1>User applied wuth this details</h1>
         <div>
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> */}
-          {userAppliedPost.map((item, index) => (
-            <Appliedonpost
-              appliedOnpostId={item}
-              key={index}
-              className="w-full"
-            />
-          ))}
+          <p>Name: {userData.firstName + userData.lastName}</p>
         </div>
-      ) : (
-        //{" "}
-        // </div>
-        <div className="flex justify-center items-center h-64">
-          <div className="flex flex-col items-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
-            <p className="text-gray-600">Loading applications...</p>
+        {userData ? (
+          <div>
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> */}
+            {userAppliedPost.map((item, index) => (
+              <Appliedonpost
+                appliedOnpostId={item}
+                key={index}
+                className="w-full"
+              />
+            ))}
           </div>
-        </div>
-      )}
+        ) : (
+          //{" "}
+          // </div>
+          <div className="flex justify-center items-center h-64">
+            <div className="flex flex-col items-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
+              <p className="text-gray-600">Loading applications...</p>
+            </div>
+          </div>
+        )}{" "}
+      </div>
     </div>
   );
 };

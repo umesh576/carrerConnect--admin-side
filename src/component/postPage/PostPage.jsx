@@ -7,7 +7,7 @@ const PostPage = ({ allPostId }) => {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
       {allPostId.map((items, index) => (
         <div key={index} className="w-full h-full">
-          <PostCard postId={items} />
+          <PostCard postId={items} key={index} />
         </div>
       ))}
     </div>
