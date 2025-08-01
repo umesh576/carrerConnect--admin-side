@@ -23,12 +23,6 @@ const CoverLetterReviewpage = () => {
         <div>
           <div className="flex justify-center ">
             <div className="w-200 p-5">
-              {/* <Image
-              src={`http://localhost:5000/${file}`}
-              height={1000}
-              width={1000}
-              alt="image"
-            /> */}
               <img src={`http://localhost:5000/${file}`} alt="image" />
               <p>this is cv</p>
             </div>

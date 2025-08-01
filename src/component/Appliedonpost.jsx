@@ -38,16 +38,18 @@ const Appliedonpost = ({ appliedOnpostId, userId }) => {
   }, [appliedOnpostId]);
 
   const handleDelete = () => {};
-  const viewProfile = () => {};
+
   const acceptRequest = () => {};
-  const viewResume = () => {};
+  const viewResume = () => {
+    router.push(
+      `/reviewCoverLetter?appliedOnpostId=${appliedOnpostdata.postId}&coverLetter=${appliedOnpostdata.resume[0]}`
+    );
+  };
   const handleclick = () => {};
   const userApplicationAccepted = () => {};
   const viewCoverLetter = () => {
-    const filePath = appliedOnpostdata.coverLetter[0].replace(/\\/g, "/"); // 🔁 Replace backslash
-    const encodedPath = encodeURIComponent(filePath);
     router.push(
-      `/reviewCoverLetter?appliedOnpostId=${appliedOnpostdata.postId}&coverLetter=${encodedPath}`
+      `/reviewCoverLetter?appliedOnpostId=${appliedOnpostdata.postId}&coverLetter=${appliedOnpostdata.coverLetter[0]}`
     );
   };
 
@@ -141,18 +143,6 @@ const Appliedonpost = ({ appliedOnpostId, userId }) => {
           onClick={handleclick}
         >
           Reject
-        </button>
-        <button
-          className="px-6 py-3 bg-blue-400 text-white rounded-lg hover:bg-gray-700 transition-colors shadow-sm hover:shadow-md"
-          onClick={handleDelete}
-        >
-          View profile
-        </button>
-        <button
-          className="px-6 py-3 bg-blue-400 text-white rounded-lg hover:bg-gray-700 transition-colors shadow-sm hover:shadow-md"
-          onClick={handleDelete}
-        >
-          View real details
         </button>
       </div>
       <ToastContainer />
