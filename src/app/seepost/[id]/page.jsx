@@ -238,7 +238,7 @@ const DynamicJobCategoryPage = () => {
             className=" border-1 py-3 px-8 rounded-lg bg-blue-500 text-white  hover:bg-orange-300 cursor-pointer"
             onClick={handelGoback}
           >
-            {!loading ? <div>Back</div> : <div>Backing...</div>}
+            {!loading ? <div>← Back</div> : <div>Backing...</div>}
           </button>
         </div>
       </div>

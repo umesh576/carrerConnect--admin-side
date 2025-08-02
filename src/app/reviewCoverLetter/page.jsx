@@ -32,7 +32,7 @@ const CoverLetterReviewpage = () => {
               className="p-5 bg-blue-400 px-8 rounded-lg"
               onClick={handleback}
             >
-              back
+              ← Back
             </button>
           </div>
         </div>
