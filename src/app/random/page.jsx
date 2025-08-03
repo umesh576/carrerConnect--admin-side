@@ -17,14 +17,7 @@ const Dialogbox = () => {
         Open dialog box
       </button>
       <div className={show ? "block" : "hidden"}>
-        <div>
-          <span>*</span>
-          <br />
-          <input type="text" name="date" id="box" placeholder="Entername" />
-          <br />
-
-          <button>submit</button>
-        </div>
+        <Dialogbox />
       </div>
     </div>
   );

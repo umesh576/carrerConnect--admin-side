@@ -93,18 +93,17 @@ const PostCard = ({ postId }) => {
                 </div>
               </div>
             </div>
-
-            {/* {postData.picturePost && (
-              <div className="mb-4">
-                <Image
-                  width={400}
-                  height={300}
-                  alt="Post image"
-                  src={postData.picturePost || "https://unsplash.com/s/photos/image"}
-                  className="rounded-lg object-cover w-full h-48"
-                />
-              </div>
-            )} */}
+            <div className="w-full">
+              {postData.picturePost && (
+                <div className="mb-4">
+                  <img
+                    alt="Post image"
+                    src={`http://localhost:3000/${postData.picturePost} `}
+                    className="rounded-lg object-cover w-full h-48"
+                  />
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Post Footer */}
