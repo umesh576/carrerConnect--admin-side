@@ -182,7 +182,7 @@ const CreatePostPage = () => {
                 <label className="flex flex-col w-full border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 transition">
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
                     <svg
-                      className="w-8 h-8 mb-4 text-gray-500"
+                      className="w-8 h-8 mb-4 text-black"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -198,7 +198,12 @@ const CreatePostPage = () => {
                       Click to upload or drag and drop
                     </p>
                   </div>
-                  <input type="file" name="picturePost" required />
+                  <input
+                    className="text-black"
+                    type="file"
+                    name="picturePost"
+                    required
+                  />
                 </label>
               </div>
             </div>

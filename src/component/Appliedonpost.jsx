@@ -39,8 +39,24 @@ const Appliedonpost = ({ appliedOnpostId }) => {
     fetchAppliedOnPost(appliedOnpostId);
   }, []);
 
-  const handleReject = () => {
+  const handleReject = async () => {
+    setIsLoading(false);
+    const token = localStorage.getItem("authToken");
     try {
+      const response = await fetch(
+        `http://localhost:5000/api/useraccpet/reject/${appliedOnpostId}`,
+        {
+          headers: {
+            Authorization: `BEARER ${token}`,
+          },
+        }
+      );
+      if (response.ok) {
+        toast.error("rejected.");
+        console.log(okey);
+      } else {
+        console.log("not okey");
+      }
     } catch (error) {
       toast.error("some thing went wrong.");
     }
@@ -292,7 +308,7 @@ const Appliedonpost = ({ appliedOnpostId }) => {
                     className="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-gray-700 transition-colors shadow-sm hover:shadow-md"
                     onClick={handleReject}
                   >
-                    Reject
+                    {isLoading ? <p>Reject</p> : <p>Rejecting</p>}
                   </button>
                 </div>
               </div>
