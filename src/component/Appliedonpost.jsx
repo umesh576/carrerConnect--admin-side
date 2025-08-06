@@ -51,7 +51,7 @@ const Appliedonpost = ({ appliedOnpostId }) => {
           },
         }
       );
-      // dsakd
+      // dsakd`
       if (response.ok) {
         toast.error("rejected.");
         console.log(okey);
